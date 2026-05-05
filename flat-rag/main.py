@@ -17,20 +17,25 @@ def main():
     parser.add_argument("--query", type=str, help="Optional single query to run")
     args = parser.parse_args()
 
-    # Nếu reindex được chỉ định, hoặc DB chưa tồn tại, thì build lại
-    if args.reindex or not os.path.exists(args.persist):
-        print("Indexing files and building vectorstore...")
-        retriever = build_or_load_vectorstore(data_dir=args.data, persist_directory=args.persist)
+    if args.reindex:
+        print("Re-indexing files and rebuilding vectorstore...")
     else:
-        # Thực tế Chroma.from_documents sẽ load DB nếu tồn tại, nhưng để đơn giản, rebuild is recommended
-        print("Opening existing vectorstore by re-building from data (recommended). Use --reindex to force fresh index")
-        retriever = build_or_load_vectorstore(data_dir=args.data, persist_directory=args.persist)
+        print("Loading existing vectorstore if available; otherwise building it from data...")
+
+    retriever = build_or_load_vectorstore(
+        data_dir=args.data,
+        persist_directory=args.persist,
+        rebuild=args.reindex,
+    )
 
     chain = create_retrieval_chain(retriever)
 
     if args.query:
-        ans = chain.run(args.query)
-        print("\nAnswer:\n", ans)
+        result = chain.invoke({"input": args.query})
+        print("\nAnswer:\n", result["answer"])
+        sources = sorted({item.metadata.get("source", "unknown") for item in result.get("context", [])})
+        if sources:
+            print("\nSources:\n" + "\n".join(f"- {source}" for source in sources))
         return
 
     print("Enter queries (empty line to quit):")
@@ -41,8 +46,13 @@ def main():
             break
         if not q.strip():
             break
-        a = chain.run(q)
-        print("A> ", a)
+        result = chain.invoke({"input": q})
+        print("A> ", result["answer"])
+        sources = sorted({item.metadata.get("source", "unknown") for item in result.get("context", [])})
+        if sources:
+            print("Sources:")
+            for source in sources:
+                print(f"- {source}")
 
 
 if __name__ == "__main__":

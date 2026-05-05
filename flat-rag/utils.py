@@ -1,14 +1,17 @@
-import os
 import glob
+import os
+import shutil
 from typing import List
 
+from langchain_core.documents import Document
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_community.vectorstores import Chroma
+from langchain_community.chat_models import ChatOpenAI
+from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_classic.chains.combine_documents import create_stuff_documents_chain
+from langchain_classic.chains.retrieval import create_retrieval_chain as lc_create_retrieval_chain
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pypdf import PdfReader
-from langchain.docstore.document import Document
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
-from langchain.llms import OpenAI
-from langchain.chains import RetrievalQA
 
 
 def find_files(data_dir: str) -> List[str]:
@@ -55,14 +58,15 @@ def split_documents(documents: List[Document], chunk_size: int = 1000, chunk_ove
     Tham số mặc định theo yêu cầu: chunk_size=1000, overlap=200.
     """
     splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-    texts = []
-    for d in documents:
-        chunks = splitter.split_text(d.page_content)
-        for i, c in enumerate(chunks):
-            meta = dict(d.metadata)
-            meta.update({"chunk": i})
-            texts.append(Document(page_content=c, metadata=meta))
-    return texts
+    return splitter.split_documents(documents)
+
+
+def create_embeddings() -> OpenAIEmbeddings:
+    """Tạo embeddings cho Flat RAG.
+
+    Input files -> Text chunks -> Embeddings -> Vector DB.
+    """
+    return OpenAIEmbeddings()
 
 
 def create_chroma_from_documents(documents: List[Document], persist_directory: str = ".chromadb") -> Chroma:
@@ -71,10 +75,11 @@ def create_chroma_from_documents(documents: List[Document], persist_directory: s
     Luồng dữ liệu:
     Input files -> Documents -> Text chunks -> Embeddings -> Chroma (Vector DB)
     """
-    # 1) Tạo embeddings (OpenAI)
-    embeddings = OpenAIEmbeddings()
+    embeddings = create_embeddings()
 
-    # 2) Tạo/ghi Chroma DB
+    if os.path.exists(persist_directory):
+        shutil.rmtree(persist_directory)
+
     vectordb = Chroma.from_documents(documents, embeddings, persist_directory=persist_directory)
     try:
         vectordb.persist()
@@ -87,20 +92,39 @@ def create_chroma_from_documents(documents: List[Document], persist_directory: s
 def create_retrieval_chain(retriever, llm=None):
     """Kết hợp `retriever` và `llm` thành một Retrieval Chain.
 
-    Trả về một chain có phương thức `run(query)`.
+    Trả về chain dùng `invoke({"input": question})`.
     """
     if llm is None:
-        llm = OpenAI(temperature=0)
-    chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
-    return chain
+        llm = ChatOpenAI(temperature=0, model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"))
+
+    prompt = ChatPromptTemplate.from_messages(
+        [
+            (
+                "system",
+                "You are a helpful Flat RAG assistant. Answer only from the provided context. "
+                "If the context does not contain the answer, say you do not know. "
+                "Keep the answer concise and grounded.",
+            ),
+            ("human", "Question: {input}\n\nContext:\n{context}"),
+        ]
+    )
+    document_chain = create_stuff_documents_chain(llm, prompt)
+    return lc_create_retrieval_chain(retriever, document_chain)
 
 
-def build_or_load_vectorstore(data_dir: str = "data", persist_directory: str = ".chromadb"):
+def build_or_load_vectorstore(data_dir: str = "data", persist_directory: str = ".chromadb", rebuild: bool = False):
     """Toàn bộ flow: quét file -> load -> split -> embeddings -> chroma.
 
     Nếu `persist_directory` đã tồn tại và chứa DB, bạn có thể load lại (Chroma tự quản lý).
     Trả về `retriever` để dùng cho chain.
     """
+    embeddings = create_embeddings()
+
+    if os.path.exists(persist_directory) and not rebuild:
+        vectordb = Chroma(persist_directory=persist_directory, embedding_function=embeddings)
+        retriever = vectordb.as_retriever(search_type="similarity", search_kwargs={"k": 5})
+        return retriever
+
     files = find_files(data_dir)
     if not files:
         raise FileNotFoundError(f"No files found in {data_dir}. Place .pdf/.txt files there.")
