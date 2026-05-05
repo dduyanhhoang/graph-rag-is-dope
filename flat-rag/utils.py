@@ -6,16 +6,20 @@ from typing import List
 from langchain_core.documents import Document
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.vectorstores import Chroma
-from langchain_community.chat_models import ChatOpenAI
-from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
 from langchain_classic.chains.retrieval import create_retrieval_chain as lc_create_retrieval_chain
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pypdf import PdfReader
 
 
+DEFAULT_GITHUB_MODELS_BASE_URL = "https://models.github.ai/inference"
+DEFAULT_CHAT_MODEL = "gpt-4o-mini"
+DEFAULT_EMBEDDING_MODEL = "text-embedding-3-small"
+
+
 def find_files(data_dir: str) -> List[str]:
-    """Quét thư mục `data_dir` và trả về list các file .pdf và .txt"""
+    """Quét thư mục `data_dir` và trả về list các file .pdf và .txt."""
     patterns = [os.path.join(data_dir, "**", "*.pdf"), os.path.join(data_dir, "**", "*.txt")]
     files = []
     for p in patterns:
@@ -57,8 +61,46 @@ def split_documents(documents: List[Document], chunk_size: int = 1000, chunk_ove
 
     Tham số mặc định theo yêu cầu: chunk_size=1000, overlap=200.
     """
-    splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap,
+        length_function=lambda text: len(text.split()),
+    )
     return splitter.split_documents(documents)
+
+
+def get_llm_config() -> dict:
+    """Build config for the chat API.
+
+    Chat and embeddings are intentionally configured separately.
+    """
+    api_key = os.getenv("GITHUB_TOKEN")
+    base_url = os.getenv("GITHUB_BASE_URL") or DEFAULT_GITHUB_MODELS_BASE_URL
+    model = os.getenv("GITHUB_MODEL") or DEFAULT_CHAT_MODEL
+
+    if not api_key:
+        raise ValueError(
+            "Missing chat API key. Set GITHUB_TOKEN in flat-rag/.env for GitHub Models."
+        )
+
+    return {"api_key": api_key, "base_url": base_url, "model": model}
+
+
+def get_embedding_config() -> dict:
+    """Build config for the embedding API.
+
+    This uses a separate API key and endpoint from the chat model.
+    """
+    api_key = os.getenv("EMBED_API_KEY")
+    base_url = os.getenv("EMBED_BASE_URL") or DEFAULT_GITHUB_MODELS_BASE_URL
+    model = os.getenv("EMBED_MODEL") or DEFAULT_EMBEDDING_MODEL
+
+    if not api_key:
+        raise ValueError(
+            "Missing embedding API key. Set EMBED_API_KEY in flat-rag/.env."
+        )
+
+    return {"api_key": api_key, "base_url": base_url, "model": model}
 
 
 def create_embeddings() -> OpenAIEmbeddings:
@@ -66,7 +108,14 @@ def create_embeddings() -> OpenAIEmbeddings:
 
     Input files -> Text chunks -> Embeddings -> Vector DB.
     """
-    return OpenAIEmbeddings()
+    config = get_embedding_config()
+    batch_size = int(os.getenv("EMBED_BATCH_SIZE", "16"))
+    return OpenAIEmbeddings(
+        api_key=config["api_key"],
+        base_url=config["base_url"],
+        model=config["model"],
+        chunk_size=batch_size,
+    )
 
 
 def create_chroma_from_documents(documents: List[Document], persist_directory: str = ".chromadb") -> Chroma:
@@ -81,11 +130,6 @@ def create_chroma_from_documents(documents: List[Document], persist_directory: s
         shutil.rmtree(persist_directory)
 
     vectordb = Chroma.from_documents(documents, embeddings, persist_directory=persist_directory)
-    try:
-        vectordb.persist()
-    except Exception:
-        # Một vài phiên bản lưu tự động hoặc không expose persist()
-        pass
     return vectordb
 
 
@@ -95,7 +139,13 @@ def create_retrieval_chain(retriever, llm=None):
     Trả về chain dùng `invoke({"input": question})`.
     """
     if llm is None:
-        llm = ChatOpenAI(temperature=0, model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"))
+        config = get_llm_config()
+        llm = ChatOpenAI(
+            temperature=0,
+            model=config["model"],
+            api_key=config["api_key"],
+            base_url=config["base_url"],
+        )
 
     prompt = ChatPromptTemplate.from_messages(
         [
@@ -112,7 +162,7 @@ def create_retrieval_chain(retriever, llm=None):
     return lc_create_retrieval_chain(retriever, document_chain)
 
 
-def build_or_load_vectorstore(data_dir: str = "data", persist_directory: str = ".chromadb", rebuild: bool = False):
+def build_or_load_vectorstore(data_dir: str = "corpus", persist_directory: str = ".chromadb", rebuild: bool = False):
     """Toàn bộ flow: quét file -> load -> split -> embeddings -> chroma.
 
     Nếu `persist_directory` đã tồn tại và chứa DB, bạn có thể load lại (Chroma tự quản lý).

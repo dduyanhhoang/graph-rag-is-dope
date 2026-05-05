@@ -11,7 +11,7 @@ load_dotenv()
 
 def main():
     parser = argparse.ArgumentParser(description="Flat RAG demo: ingest local PDF/TXT and answer queries.")
-    parser.add_argument("--data", type=str, default="data", help="Data directory containing .pdf/.txt")
+    parser.add_argument("--data", type=str, default="corpus", help="Corpus directory containing .pdf/.txt")
     parser.add_argument("--persist", type=str, default=".chromadb", help="Chroma persist directory")
     parser.add_argument("--reindex", action="store_true", help="Force re-indexing of files")
     parser.add_argument("--query", type=str, help="Optional single query to run")

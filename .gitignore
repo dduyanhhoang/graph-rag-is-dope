@@ -136,6 +136,9 @@ celerybeat.pid
 *.aof
 *.pid
 
+# chromadb
+.chromadb/
+
 # RabbitMQ
 mnesia/
 rabbitmq/
@@ -216,3 +219,5 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
