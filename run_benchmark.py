@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 from shared import load_corpus, load_benchmark_questions
 from graphrag import build_graphrag_system, GraphRAG
 from flatrag import FlatRAG
-from benchmark import run_benchmark, save_results_csv, generate_report
+from shared.benchmark import run_benchmark, save_results_csv, generate_report
 
 
 def main():
@@ -24,7 +24,7 @@ def main():
     # 1. Load corpus
     print("\n[1/5] Loading corpus...")
     documents = load_corpus()
-    print(f"  ✓ Loaded {len(documents)} valid documents")
+    print(f"   Loaded {len(documents)} valid documents")
 
     if len(documents) < 10:
         print("  WARNING: Less than 10 documents. Results may not be meaningful.")
@@ -38,7 +38,12 @@ def main():
     graphrag = build_graphrag_system(test_docs)
 
     graph_stats = graphrag.graph.get_stats()
-    print(f"  ✓ Graph: {graph_stats['nodes']} nodes, {graph_stats['edges']} edges")
+    print(f"   Graph: {graph_stats['nodes']} nodes, {graph_stats['edges']} edges")
+
+    # Export knowledge graph for visualization
+    print("   Exporting graph to GEXF...")
+    graphrag.graph.export_to_gexf("data/graph/knowledge_graph.gexf")
+    print("   Exported to data/graph/knowledge_graph.gexf")
 
     # 3. Build FlatRAG index
     print("\n[3/5] Building FlatRAG (ChromaDB)...")
@@ -46,7 +51,7 @@ def main():
     flatrag.build_index(test_docs, chunk_size=1000)
 
     flat_stats = flatrag.get_stats()
-    print(f"  ✓ Index: {flat_stats['total_chunks']} chunks")
+    print(f"   Index: {flat_stats['total_chunks']} chunks")
 
     # 4. Run benchmark
     print("\n[4/5] Running benchmark on 20 questions...")
@@ -76,19 +81,19 @@ def main():
     print("BENCHMARK COMPLETE")
     print("="*70)
 
-    print("\n📊 Deliverables:")
+    print("\n Deliverables:")
     print("  1. data/results/benchmark_results.csv - Raw results (fill in 'correct' column)")
     print("  2. LAB19_REPORT.md - Summary report")
     print("  3. data/graph/knowledge_graph.gexf - Graph for visualization")
 
-    print("\n📝 Next steps:")
+    print("\n Next steps:")
     print("  1. Open benchmark_results.csv")
     print("  2. For each question, judge if GraphRAG and/or FlatRAG answered correctly")
     print("  3. Fill 'correct' column with 'true' or 'false'")
     print("  4. Re-run: python -c 'from benchmark import generate_report; from benchmark import load_results_csv; print(generate_report(load_results_csv()))'")
     print("  5. Submit LAB19_REPORT.md + CSV + graph visualization")
 
-    print("\n⚠️  IMPORTANT: You must manually judge correctness for each answer!")
+    print("\n️  IMPORTANT: You must manually judge correctness for each answer!")
     print("   The benchmark runs automatically, but human evaluation is required.")
 
 
@@ -99,7 +104,7 @@ if __name__ == "__main__":
         print("\n\nBenchmark interrupted by user.")
         sys.exit(1)
     except Exception as e:
-        print(f"\n❌ Error: {e}")
+        print(f"\n Error: {e}")
         import traceback
         traceback.print_exc()
         sys.exit(1)

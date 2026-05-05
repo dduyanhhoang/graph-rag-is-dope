@@ -6,9 +6,9 @@ Using ChromaDB for vector similarity search.
 from typing import List, Dict, Any, Tuple
 import time
 
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import Chroma
-from langchain.schema import Document
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import Chroma
+from langchain_core.documents import Document
 
 from shared import (
     llm_generate,
@@ -120,7 +120,7 @@ class FlatRAG:
             self.vectorstore.add_texts(texts, metadatas)
             print(f"   Added batch {i//batch_size + 1}/{(len(self.chunks)-1)//batch_size + 1}")
 
-        print(f"\n✓ Index built: {self.vectorstore._collection.count()} vectors stored")
+        print(f"\nIndex built: {self.vectorstore._collection.count()} vectors stored")
         return self
 
     def retrieve(

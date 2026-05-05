@@ -1,0 +1,74 @@
+question_id,question,system,answer,latency_ms,triples_count,seed_nodes,entities,retrieved_chunks,context_chars,correct,notes
+1,Which AI companies were co-founded by former Google employees?,graphrag,I don't have enough information.,1913,50,AI21 Labs;Mikhail Seregine;AI21 Studio,AI;Google,,,false,
+1,Which AI companies were co-founded by former Google employees?,flatrag,"The AI company co-founded by former Google employees is Cohere, which was founded in 2019 by Aidan Gomez and Nick Frosst, both researchers at Google Brain. (Document chunks: 3 and 4)",1525,,,,5,3092,true,
+2,What cloud providers do OpenAI and Anthropic use?,graphrag,"OpenAI's cloud provider is not specified in the provided relationships, so I don't have enough information about OpenAI. However, Anthropic uses Amazon Web Services (relationship 9).",2044,50,OpenAI;Anthropic,OpenAI;Anthropic,,,false,
+2,What cloud providers do OpenAI and Anthropic use?,flatrag,"OpenAI uses Microsoft Azure for its cloud infrastructure, as indicated by the partnership between Microsoft and OpenAI that supports AI-driven applications (Document chunks 1 and 2). There is no information provided about the cloud provider used by Anthropic. Therefore, I don't have enough information regarding Anthropic's cloud provider.",2354,,,,5,2953,false,
+3,Which companies invested in both OpenAI and Anthropic?,graphrag,I don't have enough information.,1933,50,OpenAI;Anthropic,OpenAI;Anthropic,,,false,
+3,Which companies invested in both OpenAI and Anthropic?,flatrag,I don't have enough information.,721,,,,5,3645,false,
+4,Who are the founders of OpenAI and what companies did they work at before?,graphrag,I don't have enough information.,1447,3,OpenAI,OpenAI,,,false,
+4,Who are the founders of OpenAI and what companies did they work at before?,flatrag,I don't have enough information.,1158,,,,5,2887,false,
+5,What relationship does Microsoft have with OpenAI?,graphrag,I don't have enough information.,1696,50,OpenAI;Microsoft,Microsoft;OpenAI,,,false,
+5,What relationship does Microsoft have with OpenAI?,flatrag,"Microsoft has a collaborative relationship with OpenAI, as evidenced by their partnership in developing AI-driven applications and services. In November 2023, Microsoft announced plans to have Sam Altman and Greg Brockman, key figures from OpenAI, join Microsoft to lead a new advanced AI research team, although this plan was later reversed when Altman was reinstated as OpenAI's CEO (Document chunk 1). Additionally, Microsoft has made significant investments in AI, including plans to invest $80 billion in AI and data centers, which supports the scalability and performance of Azure's cloud infrastructure that is utilized for AI applications developed in partnership with OpenAI (Document chunk 4).",2770,,,,5,3963,true,
+6,Which companies partnered with both Amazon and Google?,graphrag,I don't have enough information.,1587,50,Amazon;Google,Amazon;Google,,,false,
+6,Which companies partnered with both Amazon and Google?,flatrag,"The company that partnered with both Amazon and Google is Anthropic. Amazon announced a partnership with Anthropic in September 2023, and Google invested in Anthropic in October 2023. 
+
+(Used context from the first two document chunks.)",1690,,,,5,3211,true,
+7,What products did Anthropic develop?,graphrag,"Anthropic developed the following products: 
+
+1. Claude (relationship 3)
+2. Claude Code (relationship 11)
+3. Model Context Protocol (relationship 18)
+4. Claude 4 (relationship 19)
+5. Claude 3 (relationship 20)
+6. Claude 2 (relationship 21)
+7. Claude Instant (relationship 22)
+8. Claude 3.5 Sonnet (relationship 23)
+9. Claude Opus 4.6 (relationship 24)
+10. Sonnet 4.6 (relationship 25)",3892,50,Anthropic,Anthropic,,,true,
+7,What products did Anthropic develop?,flatrag,"Anthropic developed a range of large language models (LLMs) named Claude, including Claude 4, and a coding assistant called Claude Code. They also introduced a web search API that enables Claude to access real-time information from the internet. (Document chunks: 1, 2, 3, 4)",1836,,,,5,4060,true,
+8,Who invests in AI safety research?,graphrag,I couldn't identify any entities in your question.,826,0,,,,,false,
+8,Who invests in AI safety research?,flatrag,"DeepMind invests in AI safety research through its research unit, DeepMind Ethics & Society, which aims to fund external research on themes such as managing AI risk and understanding the ethical implications of AI. This information is derived from the context provided in the document chunks discussing DeepMind's initiatives (Relevance: 0.35).",1629,,,,5,3633,false,
+9,Which tech companies acquired AI startups in 2024-2025?,graphrag,I couldn't identify any entities in your question.,864,0,,,,,false,
+9,Which tech companies acquired AI startups in 2024-2025?,flatrag,Microsoft acquired the AI startup Inflection AI in March 2024 by acqui-hiring nearly its entire 70-person workforce and paying $650 million to license its technology. This information is derived from the context provided in the document chunks discussing the events surrounding Microsoft and Inflection AI (Relevance: 0.43).,1894,,,,5,3679,true,
+10,What is the connection between NVIDIA and major AI labs?,graphrag,"NVIDIA has connections with major AI labs through investments and collaborations. Specifically, NVIDIA has invested in AI21 Labs (relationship 2) and has collaborations with Inflection AI, Inc. (relationships 1 and 23). Additionally, Anthropic has invested in NVIDIA (relationship 3), indicating a reciprocal relationship between NVIDIA and major AI labs.",2692,50,collaboration with Nvidia;Nvidia,NVIDIA;AI labs,,,true,
+10,What is the connection between NVIDIA and major AI labs?,flatrag,"NVIDIA has a significant connection with major AI labs through its investments and partnerships. In November 2025, NVIDIA and Microsoft were expected to invest up to $15 billion in Anthropic, a major AI lab. Additionally, Anthropic announced plans to purchase $30 billion of computing capacity from Microsoft Azure, which runs on NVIDIA AI systems (Document chunks 3 and 4). This indicates NVIDIA's role in supporting AI development through substantial financial commitments and infrastructure partnerships.",2418,,,,5,4108,true,
+11,Which companies use Azure for AI infrastructure?,graphrag,I don't have enough information.,1964,39,Azure,Azure,,,false,
+11,Which companies use Azure for AI infrastructure?,flatrag,I don't have enough information.,821,,,,5,3861,false,
+12,Who are the CEOs of OpenAI and Anthropic?,graphrag,I don't have enough information.,1676,50,OpenAI;Anthropic,OpenAI;Anthropic,,,false,
+12,Who are the CEOs of OpenAI and Anthropic?,flatrag,"The CEO of Anthropic is Dario Amodei. The context does not provide information about the CEO of OpenAI. Therefore, I don't have enough information regarding the CEO of OpenAI. 
+
+Sources used: 
+- ""Anthropic was founded in 2021 by former members of OpenAI, including siblings Daniela Amodei and Dario Amodei, who are president and CEO, respectively."" (Relevance: 0.45)
+- ""Dario Amodei: co-founder and CEO"" (Relevance: 0.35)",2114,,,,5,4034,true,
+13,What funding rounds did OpenAI have in 2025?,graphrag,I don't have enough information.,1843,3,OpenAI,OpenAI;2025,,,false,
+13,What funding rounds did OpenAI have in 2025?,flatrag,I don't have enough information.,789,,,,5,3082,false,
+14,Which companies have partnerships with Palantir?,graphrag,I couldn't find information about Palantir in the knowledge graph.,1053,0,,Palantir,,,false,
+14,Which companies have partnerships with Palantir?,flatrag,I don't have enough information.,697,,,,5,3607,false,
+15,What hardware does OpenAI use for training?,graphrag,I don't have enough information.,1576,3,OpenAI,OpenAI,,,false,
+15,What hardware does OpenAI use for training?,flatrag,"OpenAI uses AMD chips for training, specifically committing to purchase 6 gigawatts worth of AMD chips as part of a partnership announced in October 2025. Additionally, the MI400 series of chips, which are part of AMD's AI server for 2026, will be the basis of a new server called ""Helios"" (Document chunks: [Relevance: 0.36], [Relevance: 0.34]).",3561,,,,5,2427,false,
+16,Which AI companies have DoD contracts?,graphrag,I don't have enough information.,1739,50,AI21 Labs;Mikhail Seregine;AI21 Studio,AI;DoD,,,false,
+16,Which AI companies have DoD contracts?,flatrag,"The AI companies that have Department of Defense (DoD) contracts are Amazon, Google, Microsoft, and Oracle. Amazon specifically won a $581 million contract from the U.S. Air Force in January 2026, and in 2022, it shared a $9 billion contract for cloud computing with Google, Microsoft, and Oracle. (Context from the second and third document chunks)",3020,,,,5,2259,false,
+17,What is the relationship between DeepMind and Google?,graphrag,The relationship between DeepMind and Google is that DeepMind was acquired by Google (relationship 4).,3533,50,DeepMind;Google,DeepMind;Google,,,true,
+17,What is the relationship between DeepMind and Google?,flatrag,"DeepMind is a subsidiary of Alphabet Inc., which is the parent company of Google. It was founded in the UK in 2010 and was acquired by Google in 2014. In April 2023, DeepMind merged with Google AI's Google Brain division to become Google DeepMind. The company is headquartered in London and has research centres in various countries. 
+
+(Used context from all provided document chunks.)",2152,,,,5,2700,true,
+18,Which companies developed large language models?,graphrag,I couldn't identify any entities in your question.,970,0,,,,,false,
+18,Which companies developed large language models?,flatrag,"The companies that developed large language models mentioned in the provided context are Google and AI21 Labs. Google developed the Gemma models and their subsequent versions, while AI21 Labs developed the Jurassic-1 model. 
+
+References:
+- Google: Gemma models (multiple chunks)
+- AI21 Labs: Jurassic-1 (Document chunk about AI21 Labs)",2212,,,,5,4071,true,
+19,Who are the main investors in Anthropic?,graphrag,"The main investors in Anthropic are Google (relationship 6), Nvidia (relationship 9), Microsoft (relationship 10), and Lightspeed Venture Partners (relationship 28).",2756,50,Anthropic,Anthropic,,,true,
+19,Who are the main investors in Anthropic?,flatrag,"The main investors in Anthropic include:
+
+1. Google - invested $500 million in October 2023, committed to an additional $1.5 billion, and agreed to invest another $1 billion in March 2025.
+2. Amazon - initially invested $1.25 billion in September 2023, with plans for a total investment of $4 billion, and invested another $4 billion in November 2024.
+3. FTX - invested $500 million in April 2022 under the leadership of Sam Bankman-Fried.
+4. Lightspeed Venture Partners - led the Series E funding round and co-led the Series F funding round.
+5. Iconiq Capital and Fidelity Management & Research - co-led the Series F funding round.
+6. Qatar Investment Authority - participated in the Series F funding round.
+7. Coatue and GIC - led a $10 billion funding round confirmed on December 31, 2025.
+
+(Used context from multiple document chunks)",5580,,,,5,4299,true,
+20,What cloud partnerships does Google have with AI companies?,graphrag,"Google has invested in AI21 Labs, which is an AI company (relationship 19). However, there are no specific partnerships mentioned between Google and AI companies in the provided relationships. Therefore, I don't have enough information to identify any cloud partnerships that Google has with AI companies.",2505,50,AI21 Labs;AI21 Studio;Google,Google;AI,,,false,
+20,What cloud partnerships does Google have with AI companies?,flatrag,I don't have enough information.,1025,,,,5,4377,false,

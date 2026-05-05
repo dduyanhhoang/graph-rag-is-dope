@@ -22,25 +22,25 @@ def test_graphrag():
         # 1. Load a few documents
         print("1. Loading corpus...")
         docs = load_corpus()[:3]
-        print(f"   ✓ Using {len(docs)} documents for test")
+        print(f"    Using {len(docs)} documents for test")
 
         # 2. Build graph
         print("\n2. Building knowledge graph...")
         kg = KnowledgeGraph()
         kg.build_from_documents(docs)
         stats = kg.get_stats()
-        print(f"   ✓ Graph: {stats['nodes']} nodes, {stats['edges']} edges")
+        print(f"    Graph: {stats['nodes']} nodes, {stats['edges']} edges")
 
         # 3. Compute embeddings
         print("\n3. Computing node embeddings...")
         kg.compute_node_embeddings()
-        print("   ✓ Done")
+        print("    Done")
 
         # 4. Export graph
         print("\n4. Exporting graph...")
         Path("data/graph").mkdir(parents=True, exist_ok=True)
         kg.export_to_gexf("data/graph/test_graph.gexf")
-        print("   ✓ Exported to data/graph/test_graph.gexf")
+        print("    Exported to data/graph/test_graph.gexf")
 
         # 5. Create GraphRAG system and test query
         print("\n5. Testing query...")
@@ -57,15 +57,15 @@ def test_graphrag():
             print(f"   A: {answer[:150]}...")
             print(f"   (Triples: {metadata['triples_count']}, Latency: {metadata['latency_ms']}ms)")
 
-        print("\n✅ GraphRAG component test PASSED")
+        print("\n GraphRAG component test PASSED")
         return True
 
     except ImportError as e:
-        print(f"\n❌ Missing dependency: {e}")
+        print(f"\n Missing dependency: {e}")
         print("   Run: pip install -r requirements.txt")
         return False
     except Exception as e:
-        print(f"\n❌ Error: {e}")
+        print(f"\n Error: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -84,7 +84,7 @@ def test_flatrag():
         # 1. Load documents
         print("1. Loading corpus...")
         docs = load_corpus()[:3]
-        print(f"   ✓ Using {len(docs)} documents for test")
+        print(f"    Using {len(docs)} documents for test")
 
         # 2. Build index
         print("\n2. Building ChromaDB index...")
@@ -92,7 +92,7 @@ def test_flatrag():
         flatrag.build_index(docs, chunk_size=800)
 
         stats = flatrag.get_stats()
-        print(f"   ✓ Index: {stats['total_chunks']} chunks")
+        print(f"    Index: {stats['total_chunks']} chunks")
 
         # 3. Test query
         print("\n3. Testing query...")
@@ -107,15 +107,15 @@ def test_flatrag():
             print(f"   A: {answer[:150]}...")
             print(f"   (Retrieved: {metadata['retrieved_chunks']} chunks, Latency: {metadata['latency_ms']}ms)")
 
-        print("\n✅ FlatRAG component test PASSED")
+        print("\n FlatRAG component test PASSED")
         return True
 
     except ImportError as e:
-        print(f"\n❌ Missing dependency: {e}")
+        print(f"\n Missing dependency: {e}")
         print("   Run: pip install -r requirements.txt")
         return False
     except Exception as e:
-        print(f"\n❌ Error: {e}")
+        print(f"\n Error: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -134,35 +134,35 @@ def test_shared():
         # 1. Test corpus loading
         print("1. Testing corpus loader...")
         docs = load_corpus()
-        print(f"   ✓ Loaded {len(docs)} documents")
+        print(f"    Loaded {len(docs)} documents")
 
         # 2. Test benchmark questions
         print("\n2. Testing benchmark questions...")
         questions = load_benchmark_questions()
-        print(f"   ✓ Loaded {len(questions)} questions")
+        print(f"    Loaded {len(questions)} questions")
         print(f"   Sample: {questions[0]['question']}")
 
         # 3. Test entity extraction
         print("\n3. Testing entity extraction...")
         test_q = "Which AI companies were co-founded by former Google employees?"
         entities = extract_entities_from_question(test_q)
-        print(f"   ✓ Extracted: {entities}")
+        print(f"    Extracted: {entities}")
 
         # 4. Test embedder
         print("\n4. Testing universal embedder...")
         embedder = UniversalEmbedder()
-        print(f"   ✓ Provider: {embedder.config.provider}")
-        print(f"   ✓ Model: {embedder.config.model_name}")
+        print(f"    Provider: {embedder.config.provider}")
+        print(f"    Model: {embedder.config.model_name}")
 
         test_texts = ["OpenAI", "Microsoft", "Anthropic"]
         embeddings = embedder.embed_documents(test_texts)
-        print(f"   ✓ Generated {len(embeddings)} embeddings, dim={len(embeddings[0])}")
+        print(f"    Generated {len(embeddings)} embeddings, dim={len(embeddings[0])}")
 
-        print("\n✅ Shared components test PASSED")
+        print("\n Shared components test PASSED")
         return True
 
     except Exception as e:
-        print(f"\n❌ Error: {e}")
+        print(f"\n Error: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -182,10 +182,10 @@ if __name__ == "__main__":
         results = [test_shared(), test_graphrag(), test_flatrag()]
         print("\n" + "="*50)
         if all(results):
-            print("✅ ALL TESTS PASSED")
+            print(" ALL TESTS PASSED")
             sys.exit(0)
         else:
-            print("❌ SOME TESTS FAILED")
+            print(" SOME TESTS FAILED")
             sys.exit(1)
 
     elif args.dev == "A":

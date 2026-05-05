@@ -157,7 +157,7 @@ def test_embedder():
     query_embedding = embedder.embed_query("Who founded OpenAI?")
     print(f"Query embedding dimension: {len(query_embedding)}")
 
-    print("✓ Embedder test complete!")
+    print("Embedder test complete!")
 
 
 if __name__ == "__main__":

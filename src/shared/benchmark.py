@@ -5,7 +5,7 @@ Benchmark runner - shared code to evaluate both systems.
 import time
 import csv
 from pathlib import Path
-from typing import List, Dict, Any, Callable
+from typing import List, Dict, Any, Callable, Tuple
 
 from shared import load_benchmark_questions
 
@@ -48,12 +48,12 @@ def run_benchmark(
             graph_start = time.time()
             graph_answer, graph_metadata = graphrag_query_func(question)
             graph_latency = int((time.time() - graph_start) * 1000)
-            print(f"✓ ({graph_latency}ms)")
+            print(f" ({graph_latency}ms)")
         except Exception as e:
             graph_answer = f"ERROR: {str(e)}"
             graph_latency = 0
             graph_metadata = {}
-            print(f"✗ {e}")
+            print(f" {e}")
 
         # Test FlatRAG
         print("  FlatRAG:  ", end="", flush=True)
@@ -61,12 +61,12 @@ def run_benchmark(
             flat_start = time.time()
             flat_answer, flat_metadata = flatrag_query_func(question)
             flat_latency = int((time.time() - flat_start) * 1000)
-            print(f"✓ ({flat_latency}ms)")
+            print(f" ({flat_latency}ms)")
         except Exception as e:
             flat_answer = f"ERROR: {str(e)}"
             flat_latency = 0
             flat_metadata = {}
-            print(f"✗ {e}")
+            print(f" {e}")
 
         # Record GraphRAG result
         results.append({
@@ -78,6 +78,8 @@ def run_benchmark(
             'triples_count': graph_metadata.get('triples_count', 0),
             'seed_nodes': ';'.join(graph_metadata.get('seed_nodes', [])),
             'entities': ';'.join(graph_metadata.get('entities', [])),
+            'retrieved_chunks': '',  # N/A for GraphRAG
+            'context_chars': '',  # N/A for GraphRAG
             'correct': '',  # To be filled manually
             'notes': ''
         })
@@ -89,9 +91,11 @@ def run_benchmark(
             'system': 'flatrag',
             'answer': flat_answer[:1000],
             'latency_ms': flat_latency,
+            'triples_count': '',  # N/A for FlatRAG
+            'seed_nodes': '',  # N/A for FlatRAG
+            'entities': '',  # Not tracked for flatrag
             'retrieved_chunks': flat_metadata.get('retrieved_chunks', 0),
             'context_chars': flat_metadata.get('total_context_chars', 0),
-            'entities': '',  # Not tracked for flatrag
             'correct': '',  # To be filled manually
             'notes': ''
         })
@@ -112,7 +116,7 @@ def save_results_csv(results: List[Dict[str, Any]], filename: str = "data/result
         writer.writeheader()
         writer.writerows(results)
 
-    print(f"\n✓ Results saved to {filename}")
+    print(f"\n Results saved to {filename}")
 
 
 def load_results_csv(filename: str = "data/results/benchmark_results.csv") -> List[Dict[str, Any]]:
@@ -198,20 +202,24 @@ def generate_report(results: List[Dict[str, Any]]) -> str:
     # Analysis
     report.append("## Analysis\n")
 
+    # Get system-specific results
+    graphrag_results = [r for r in results if r['system'] == 'graphrag']
+    flatrag_results = [r for r in results if r['system'] == 'flatrag']
+
     if metrics['improvement_pct'] >= 20:
-        report.append("✅ **Strong evidence for GraphRAG superiority** on multi-hop queries.")
+        report.append("**Strong evidence for GraphRAG superiority** on multi-hop queries.")
         report.append(f"GraphRAG outperformed FlatRAG by {metrics['improvement_pct']:.1f}% on accuracy.")
     elif metrics['improvement_pct'] >= 0:
-        report.append("✅ **GraphRAG shows improvement** over FlatRAG on multi-hop queries.")
+        report.append("**GraphRAG shows improvement** over FlatRAG on multi-hop queries.")
         report.append(f"GraphRAG outperformed FlatRAG by {metrics['improvement_pct']:.1f}% on accuracy.")
     else:
-        report.append("⚠️ **FlatRAG performed better** - review questions and evaluation criteria.")
+        report.append("**FlatRAG performed better** - review questions and evaluation criteria.")
 
     report.append("\n## Key Observations\n")
 
     # Check for patterns
-    g_triples_avg = sum(int(r.get('triples_count', 0)) for r in graphrag_results) / len(graphrag_results) if graphrag_results else 0
-    f_chunks_avg = sum(int(r.get('retrieved_chunks', 0)) for r in flatrag_results) / len(flatrag_results) if flatrag_results else 0
+    g_triples_avg = sum(int(r.get('triples_count') or 0) for r in graphrag_results) / len(graphrag_results) if graphrag_results else 0
+    f_chunks_avg = sum(int(r.get('retrieved_chunks') or 0) for r in flatrag_results) / len(flatrag_results) if flatrag_results else 0
 
     report.append(f"- GraphRAG used average {g_triples_avg:.0f} triples per query")
     report.append(f"- FlatRAG retrieved average {f_chunks_avg:.0f} chunks per query")

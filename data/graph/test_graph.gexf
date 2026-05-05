@@ -1,0 +1,626 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
+  <meta lastmodifieddate="2026-05-05">
+    <creator>NetworkX 3.6.1</creator>
+  </meta>
+  <graph defaultedgetype="directed" mode="static" name="">
+    <attributes mode="static" class="edge">
+      <attribute id="2" title="relation" type="string" />
+      <attribute id="3" title="source_doc" type="string" />
+    </attributes>
+    <attributes mode="static" class="node">
+      <attribute id="0" title="type" type="string" />
+      <attribute id="1" title="sources" type="string" />
+    </attributes>
+    <nodes>
+      <node id="AI21 Labs" label="AI21 Labs">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Yoav Shoham" label="Yoav Shoham">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Ori Goshen" label="Ori Goshen">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Amnon Shashua" label="Amnon Shashua">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Tel Aviv, Israel" label="Tel Aviv, Israel">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Wordtune" label="Wordtune">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="AI21 Studio" label="AI21 Studio">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Jurassic-1" label="Jurassic-1">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Wordtune Spices" label="Wordtune Spices">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Jurassic-2" label="Jurassic-2">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Jamba" label="Jamba">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Jamba 1.6" label="Jamba 1.6">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Maestro" label="Maestro">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Walden Catalyst" label="Walden Catalyst">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Pitango First" label="Pitango First">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Ahren" label="Ahren">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Google" label="Google">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Nvidia" label="Nvidia">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Amazon Web Services" label="Amazon Web Services">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Natural Language Processing" label="Natural Language Processing">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Jamba 1.5" label="Jamba 1.5">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AI21_Labs" />
+        </attvalues>
+      </node>
+      <node id="Jerry Sanders" label="Jerry Sanders">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="AMD" label="AMD">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Santa Clara, California" label="Santa Clara, California">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="CPUs" label="CPUs">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="GPUs" label="GPUs">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="FPGAs" label="FPGAs">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="SoCs" label="SoCs">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="high-performance computer components" label="high-performance computer components">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="microprocessors" label="microprocessors">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="embedded processors" label="embedded processors">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="graphics processors" label="graphics processors">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Xilinx" label="Xilinx">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="FPGA products" label="FPGA products">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Siemens" label="Siemens">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am9300" label="Am9300">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am2501" label="Am2501">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am2505" label="Am2505">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am3101" label="Am3101">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am9080" label="Am9080">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am2900" label="Am2900">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am286" label="Am286">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am14/1506" label="Am14/1506">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am14/1507" label="Am14/1507">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am9102" label="Am9102">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am25LS07" label="Am25LS07">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am25LS08" label="Am25LS08">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="Am25LS09" label="Am25LS09">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+      <node id="x86 microprocessors" label="x86 microprocessors">
+        <attvalues>
+          <attvalue for="0" value="entity" />
+          <attvalue for="1" value="AMD" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge source="AI21 Labs" target="Yoav Shoham" id="0" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="founded_by" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Ori Goshen" id="1" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="founded_by" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Amnon Shashua" id="2" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="founded_by" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Tel Aviv, Israel" id="3" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="based_in" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Wordtune" id="4" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="developed" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="AI21 Studio" id="5" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="developed" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Jurassic-1" id="6" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="acquired" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Wordtune Spices" id="7" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="developed" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Jurassic-2" id="8" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="acquired" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Jamba" id="9" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="acquired" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Jamba 1.6" id="10" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="developed" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Maestro" id="11" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="acquired" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Amazon Web Services" id="12" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="partnered_with" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Natural Language Processing" id="13" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="uses" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="AI21 Labs" target="Jamba 1.5" id="14" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="developed" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="Yoav Shoham" target="AI21 Labs" id="15" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="CEO_of" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="Ori Goshen" target="AI21 Labs" id="16" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="CEO_of" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="Amnon Shashua" target="AI21 Labs" id="17" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="works_at" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="Walden Catalyst" target="AI21 Labs" id="18" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="invested_in" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="Pitango First" target="AI21 Labs" id="19" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="invested_in" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="Ahren" target="AI21 Labs" id="20" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="invested_in" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="Google" target="AI21 Labs" id="21" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="invested_in" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="Nvidia" target="AI21 Labs" id="22" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="invested_in" />
+          <attvalue for="3" value="AI21_Labs" />
+        </attvalues>
+      </edge>
+      <edge source="Jerry Sanders" target="AMD" id="23" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="founded" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Santa Clara, California" id="24" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="based_in" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="CPUs" id="25" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="developed" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="GPUs" id="26" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="developed" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="FPGAs" id="27" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="developed" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="SoCs" id="28" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="developed" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="high-performance computer components" id="29" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="developed" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="microprocessors" id="30" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="uses" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="embedded processors" id="31" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="uses" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="graphics processors" id="32" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="uses" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Xilinx" id="33" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="acquired" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Siemens" id="34" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="partnered_with" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am9300" id="35" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am2501" id="36" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am2505" id="37" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am3101" id="38" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am9080" id="39" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am2900" id="40" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am286" id="41" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am14/1506" id="42" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am14/1507" id="43" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am9102" id="44" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am25LS07" id="45" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am25LS08" id="46" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Am25LS09" id="47" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="created" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="x86 microprocessors" id="48" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="uses" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="AMD" target="Jerry Sanders" id="49" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="works_at" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="Xilinx" target="FPGA products" id="50" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="developed" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+      <edge source="Siemens" target="AMD" id="51" weight="1.0">
+        <attvalues>
+          <attvalue for="2" value="invested_in" />
+          <attvalue for="3" value="AMD" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

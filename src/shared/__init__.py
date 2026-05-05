@@ -130,9 +130,10 @@ def llm_generate_json(
     prompt: str,
     model: str = None,
     temperature: float = 0.0
-) -> Dict[str, Any]:
+):
     """
     Generate JSON response from LLM.
+    Returns parsed JSON (dict or list).
     """
     prompt = prompt + "\n\nReturn your response as valid JSON only."
 
@@ -140,11 +141,22 @@ def llm_generate_json(
     try:
         return json.loads(response_text)
     except json.JSONDecodeError:
-        # Try to extract JSON from response
+        # Try to extract JSON from response - handle both objects {...} and arrays [...]
         import re
+        # Try array pattern first
+        json_match = re.search(r'\[.*\]', response_text, re.DOTALL)
+        if json_match:
+            try:
+                return json.loads(json_match.group())
+            except json.JSONDecodeError:
+                pass
+        # Try object pattern
         json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
         if json_match:
-            return json.loads(json_match.group())
+            try:
+                return json.loads(json_match.group())
+            except json.JSONDecodeError:
+                pass
         raise ValueError(f"Could not parse JSON from response: {response_text[:100]}")
 
 
@@ -334,17 +346,15 @@ def generate_summary_report(results: List[Dict[str, Any]]) -> str:
             report.append(f"### Q{i+1}: {g['question'][:60]}...")
             report.append(f"**GraphRAG**: {g['answer'][:200]}...")
             report.append(f"**FlatRAG**: {f['answer'][:200]}...")
-            if g.get('human_judged_correct') and not f.get('human_judged_correct'):
-                report.append("_GraphRAG correct, FlatRAG incorrect_\n")
             report.append("")
 
     report.append("## Conclusion\n")
     if accuracy.get('improvement', 0) > 0.2:
-        report.append("✅ **GraphRAG significantly outperformed FlatRAG** on multi-hop questions, demonstrating the value of graph-based retrieval for relational queries.")
+        report.append("**GraphRAG significantly outperformed FlatRAG** on multi-hop questions, demonstrating the value of graph-based retrieval for relational queries.")
     elif accuracy.get('improvement', 0) > 0:
-        report.append("✅ **GraphRAG showed improvement** over FlatRAG on multi-hop questions, validating the approach.")
+        report.append("**GraphRAG showed improvement** over FlatRAG on multi-hop questions, validating the approach.")
     else:
-        report.append("⚠️ **Results inconclusive** - manual review needed for correctness judgments.")
+        report.append("**Results inconclusive** - manual review needed for correctness judgments.")
 
     return "\n".join(report)
 

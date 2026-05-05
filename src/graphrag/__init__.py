@@ -7,6 +7,7 @@ import networkx as nx
 from typing import List, Dict, Any, Tuple, Set
 import time
 from collections import deque
+from pathlib import Path
 
 from shared import (
     llm_generate,
@@ -14,7 +15,11 @@ from shared import (
     load_corpus,
     load_benchmark_questions,
     save_results_csv,
-    load_benchmark_questions
+    load_benchmark_questions,
+    logger,
+    extract_entities_from_question,
+    normalize_entity_name,
+    fuzzy_match_entity
 )
 from shared.embedder import UniversalEmbedder
 
@@ -162,10 +167,10 @@ class KnowledgeGraph:
         """Export graph to GEXF format for visualization."""
         Path(filename).parent.mkdir(parents=True, exist_ok=True)
 
-        # Convert sets to lists for serialization
+        # Convert sets to strings for serialization (GEXF doesn't support sets)
         for node, attrs in self.graph.nodes(data=True):
-            if 'sources' in attrs:
-                attrs['sources'] = list(attrs['sources'])
+            if 'sources' in attrs and isinstance(attrs['sources'], set):
+                attrs['sources'] = ';'.join(sorted(attrs['sources']))
 
         nx.write_gexf(self.graph, filename)
         logger.info(f"Graph exported to {filename}")
@@ -342,6 +347,7 @@ class GraphRAG:
         metadata["entities"] = entities
 
         if not entities:
+            metadata["latency_ms"] = int((time.time() - start_time) * 1000)
             return "I couldn't identify any entities in your question.", metadata
 
         # 2. Find seed nodes in graph
@@ -349,6 +355,7 @@ class GraphRAG:
         metadata["seed_nodes"] = seed_nodes
 
         if not seed_nodes:
+            metadata["latency_ms"] = int((time.time() - start_time) * 1000)
             return f"I couldn't find information about {', '.join(entities)} in the knowledge graph.", metadata
 
         # 3. BFS traversal
@@ -361,6 +368,7 @@ class GraphRAG:
         metadata["triples_count"] = len(triples)
 
         if not triples:
+            metadata["latency_ms"] = int((time.time() - start_time) * 1000)
             return "No relationships found in the knowledge graph.", metadata
 
         # 4. Textualization
