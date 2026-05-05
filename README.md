@@ -2,6 +2,15 @@
 
 A comparative implementation of GraphRAG (using Neo4j/NetworkX) and Flat RAG (using ChromaDB) for multi-hop question answering.
 
+## Team
+
+| Developer | Name | Student ID | GitHub |
+|-----------|------|------------|--------|
+| Dev A | Hoang Dinh Duy Anh | 2A202600064 | [dduyanhhoang](https://github.com/dduyanhhoang) |
+| Dev B | Tran Nhat Vi | 2A202600497 | [trannhatvi-ai](https://github.com/trannhatvi-ai) |
+
+---
+
 ## Project Structure
 
 ```
@@ -93,10 +102,10 @@ python run_benchmark.py
 
 ## Team Workflow
 
-| Developer | Stack | Branch | Main File |
-|-----------|-------|--------|-----------|
-| Dev A | NetworkX/Neo4j | `graphrag-dev` | `src/graphrag/__init__.py` |
-| Dev B | ChromaDB | `flatrag-dev` | `src/flatrag/__init__.py` |
+| Developer | Name | Stack | Main File |
+|-----------|------|-------|-----------|
+| Dev A | Hoang Dinh Duy Anh | NetworkX/Neo4j | `src/graphrag/__init__.py` |
+| Dev B | Tran Nhat Vi | ChromaDB | `src/flatrag/__init__.py` |
 
 ### 2-Hour Timeline
 
@@ -116,9 +125,18 @@ python run_benchmark.py
 
 With the curated tech company corpus, you should see:
 
-- **GraphRAG**: 20-40% better accuracy on multi-hop questions
+- **GraphRAG**: 20-40% better accuracy on multi-hop questions (theoretical)
 - **Flat RAG**: Faster queries, good for single-document facts
 - **Key win**: Questions like "Which companies invested in both OpenAI and Anthropic?"
+
+### Actual Results (This Implementation)
+
+| Metric | GraphRAG | FlatRAG |
+|--------|----------|---------|
+| Accuracy | 20% (4/20) | 50% (10/20) |
+| Avg Latency | 1925ms | 1998ms |
+
+**Note**: GraphRAG's entity extraction failures prevented it from finding relevant graph nodes, resulting in lower accuracy. The knowledge graph itself was structurally sound (640 nodes, 684 edges) but query pipeline couldn't access it effectively.
 
 ### Sample Multi-Hop Questions
 
@@ -133,14 +151,12 @@ With the curated tech company corpus, you should see:
 ## Lab Deliverables
 
 - [x] Source code in `src/`
-- [ ] Graph visualization (`data/graph/knowledge_graph.gexf` or screenshot)
-- [ ] Benchmark CSV (`data/results/benchmark_results.csv`)
-- [ ] Report (`LAB19_REPORT.md`) with:
-  - Accuracy comparison table
-  - Latency comparison
-  - 2-3 sample Q&A showing GraphRAG wins
-  - Failure mode analysis
-  - Conclusion with improvement percentage
+- [x] Graph visualization (`data/graph/knowledge_graph.gexf` and `data/graph/visualization.png`)
+- [x] Benchmark CSV (`data/results/benchmark_results.csv`)
+- [x] Reports:
+  - `REPORT_DEV_A.md` (Hoang's implementation report)
+  - `REPORT_DEV_B.md` (Vi's implementation report)
+  - `LAB19_GROUP_REPORT.md` (complete group report)
 
 ---
 
